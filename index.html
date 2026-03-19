@@ -1,188 +1,106 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>产品分类首页</title>
-  <style>
-    /* 全局基础样式 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", "微软雅黑", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    /* 页面底色：高级浅灰白+细腻肌理 */
-    body {
-      background-color: #f8f9fa;
-      background-image: 
-        radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-      background-size: 20px 20px, 100% 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    /* 容器：毛玻璃+细腻投影 */
-    .category-container {
-      width: 100%;
-      max-width: 450px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.04),
-        0 1px 2px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-    /* 标题：极简低调 */
-    .page-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #2d3748;
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.02em;
-    }
-    /* 首页搜索栏 */
-    .home-search-bar {
-      display: flex;
-      gap: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
-    .home-search-input {
-      flex: 1;
-      padding: 1rem 1.2rem;
-      border-radius: 16px;
-      border: 1px solid #e8e8e8;
-      background-color: #ffffff;
-      color: #2d3748;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-    .home-search-input:focus {
-      border-color: #333333;
-      box-shadow: 0 0 0 2px rgba(51,51,51,0.05);
-    }
-    .home-search-btn {
-      padding: 1rem 1.5rem;
-      border-radius: 16px;
-      border: none;
-      background-color: #333333;
-      color: #ffffff;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .home-search-btn:hover {
-      background: #1a1a1a;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-    }
-    /* 分类按钮：高级感设计 */
-    .category-btn {
-      display: block;
-      text-align: center;
-      padding: 1.2rem 0;
-      border-radius: 16px;
-      background-color: #ffffff;
-      color: #2d3748;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid #e8e8e8;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.02em;
-      position: relative;
-      overflow: hidden;
-    }
-    /* 按钮hover：渐变+上浮+光影 */
-    .category-btn:hover {
-      background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
-      color: #ffffff;
-      transform: translateY(-4px);
-      box-shadow: 
-        0 12px 24px rgba(0, 0, 0, 0.08),
-        0 2px 4px rgba(0, 0, 0, 0.04);
-      border-color: transparent;
-    }
-    /* 按钮内部光效 */
-    .category-btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.6s ease;
-    }
-    .category-btn:hover::before {
-      left: 100%;
-    }
-    /* 移动端适配 */
-    @media (max-width: 480px) {
-      .category-container {
-        padding: 1.5rem;
-        gap: 1rem;
-      }
-      .home-search-bar {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .home-search-input, .home-search-btn {
-        width: 100%;
-      }
-      .category-btn {
-        padding: 1rem 0;
-        font-size: 0.95rem;
-      }
-      .page-title {
-        font-size: 1.3rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品分类首页</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "微软雅黑", sans-serif;
+  }
+  body {
+    background: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .category-container {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.8);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  .page-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+  .home-search-bar {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .home-search-input {
+    flex: 1;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    outline: none;
+  }
+  .home-search-btn {
+    padding: 0.9rem 1.2rem;
+    border-radius: 14px;
+    border: none;
+    background: #333;
+    color: #fff;
+  }
+  .category-btn {
+    display: block;
+    text-align: center;
+    padding: 1.1rem 0;
+    border-radius: 16px;
+    background: #fff;
+    color: #2d3748;
+    text-decoration: none;
+    border: 1px solid #e8e8e8;
+    transition: 0.25s;
+  }
+  .category-btn:hover {
+    background: #222;
+    color: #fff;
+    transform: translateY(-3px);
+  }
+</style>
 </head>
 <body>
-  <div class="category-container">
-    <h1 class="page-title">产品系列</h1>
-    
-    <!-- 首页搜索栏 -->
-    <div class="home-search-bar">
-      <input type="text" id="homeSearchInput" class="home-search-input" placeholder="输入序号/产品名搜索">
-      <button class="home-search-btn" onclick="homeSearch()">搜索</button>
-    </div>
 
-    <a href="./all.html" class="category-btn" onclick="location.href='./all.html'; return false;">全部产品</a>
-    <a href="./resin.html" class="category-btn" onclick="location.href='./resin.html'; return false;">树脂过油系列</a>
-    <a href="./nylon.html" class="category-btn" onclick="location.href='./nylon.html'; return false;">尼龙系列</a>
-    <a href="./water.html" class="category-btn" onclick="location.href='./water.html'; return false;">防水系列</a>
+<div class="category-container">
+  <h1 class="page-title">产品系列</h1>
+
+  <div class="home-search-bar">
+    <input type="text" id="homeSearchInput" class="home-search-input" placeholder="输入序号搜索">
+    <button class="home-search-btn" onclick="homeSearch()">搜索</button>
   </div>
 
-  <script>
-    // 首页搜索功能：跳转到全部产品页并执行搜索
-    function homeSearch() {
-      const keyword = document.getElementById('homeSearchInput').value.trim();
-      if (!keyword) {
-        alert('请输入搜索内容');
-        return;
-      }
-      // 跳转到全部产品页
-      location.href = `./all.html?search=${encodeURIComponent(keyword)}`;
-    }
-    // 回车触发搜索
-    document.getElementById('homeSearchInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') homeSearch();
-    });
-  </script>
+  <a href="all.html" class="category-btn">全部产品</a>
+  <a href="resin.html" class="category-btn">树脂过油系列</a>
+  <a href="nylon.html" class="category-btn">尼龙系列</a>
+  <a href="water.html" class="category-btn">防水系列</a>
+</div>
+
+<script>
+  function homeSearch() {
+    const kw = document.getElementById('homeSearchInput').value.trim();
+    if (!kw) return;
+    location.href = `all.html?search=${encodeURIComponent(kw)}`;
+  }
+  document.getElementById('homeSearchInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') homeSearch();
+  });
+</script>
 </body>
 </html>

@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>全部产品</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全部产品</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="body-product">
-  <!-- 返回首页按钮（双重保障） -->
-  <a href="./index.html" class="back-home" onclick="location.href='./index.html'; return false;">← 返回首页</a>
 
-  <!-- 搜索栏 -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="输入序号/产品名搜索..." class="search-input">
-    <button id="searchBtn" class="search-btn">搜索</button>
-  </div>
+<a href="index.html" class="back-home">← 返回首页</a>
 
-  <!-- 分类选项卡 -->
-  <div class="category-btns">
-    <button class="category-btn" data-category="all">全部</button>
-    <button class="category-btn" data-category="树脂过油">树脂过油</button>
-    <button class="category-btn" data-category="尼龙">尼龙</button>
-    <button class="category-btn" data-category="防水">防水</button>
-  </div>
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="搜索产品序号" class="search-input">
+  <button id="searchBtn" class="search-btn">搜索</button>
+</div>
 
-  <!-- 产品展示区 -->
-  <div id="searchResults" class="results"></div>
+<div class="category-btns">
+  <button class="category-btn" data-category="all">全部</button>
+  <button class="category-btn" data-category="树脂过油">树脂过油</button>
+  <button class="category-btn" data-category="尼龙">尼龙</button>
+  <button class="category-btn" data-category="防水">防水</button>
+</div>
 
-  <!-- 图片放大弹窗 -->
-  <div id="imgModal" class="modal">
-    <span class="close-btn">&times;</span>
-    <img class="modal-content" id="modalImg">
-  </div>
+<div id="searchResults" class="results"></div>
 
-  <!-- 加载脚本 -->
-  <script src="script.js"></script>
-  <script>
-    // 初始化：默认显示全部产品
-    initProductPage('all');
-  </script>
+<div id="imgModal" class="modal">
+  <span class="close-btn">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script src="script.js"></script>
+<!-- 分别改为：all / 树脂过油 / 尼龙 / 防水 -->
+<script>initProductPage('all');</script>
 </body>
 </html>
