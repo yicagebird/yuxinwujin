@@ -6,7 +6,7 @@ function openModal(imgSrc) {
 }
 
 function initProductPage(defaultCategory) {
-  const RESIN_TOTAL =23;
+  const RESIN_TOTAL = 200;
   const NYLON_TOTAL = 30;
   const WATER_TOTAL = 14;
 
@@ -17,6 +17,7 @@ function initProductPage(defaultCategory) {
       id: "resin_" + i,
       series: "树脂过油",
       fullName: "树脂过油系列" + i,
+      shortName: "树脂过油" + i,
       img: "images/树脂过油_" + i + ".jpg"
     });
   }
@@ -25,6 +26,7 @@ function initProductPage(defaultCategory) {
       id: "nylon_" + i,
       series: "尼龙",
       fullName: "尼龙系列" + i,
+      shortName: "尼龙" + i,
       img: "images/尼龙_" + i + ".jpg"
     });
   }
@@ -33,6 +35,7 @@ function initProductPage(defaultCategory) {
       id: "water_" + i,
       series: "防水",
       fullName: "防水系列" + i,
+      shortName: "防水" + i,
       img: "images/防水_" + i + ".jpg"
     });
   }
@@ -47,17 +50,23 @@ function initProductPage(defaultCategory) {
   const searchKw = urlParams.get('search');
   if (searchKw) input.value = searchKw;
 
+  // ========== 搜索逻辑已修复 ==========
   function showProducts() {
     const kw = input.value.trim().toLowerCase();
     let filtered = productList;
 
+    // 1. 先按当前分类筛选
     if (currentCategory !== 'all') {
       filtered = filtered.filter(p => p.series === currentCategory);
     }
+
+    // 2. 精准搜索：必须完整包含你输入的内容
     if (kw) {
-      filtered = filtered.filter(p =>
-        p.fullName.toLowerCase().includes(kw) || p.fullName.includes(kw)
-      );
+      filtered = filtered.filter(p => {
+        const full = p.fullName.toLowerCase();
+        const short = p.shortName.toLowerCase();
+        return full.includes(kw) || short.includes(kw);
+      });
     }
 
     if (filtered.length === 0) {
@@ -69,7 +78,6 @@ function initProductPage(defaultCategory) {
     filtered.forEach(p => {
       html += `
         <div class="product-card">
-          <!-- 懒加载：loading="lazy" 让图片超快 -->
           <img loading="lazy" class="product-img" src="${p.img}" alt="${p.fullName}" onclick="openModal('${p.img}')">
           <div class="product-info">
             <div class="product-name">${p.fullName}</div>
